@@ -1,9 +1,12 @@
 const express = require('express');
-const app = express();
+const bodyParser = require('body-parser');
+const mySqlConnection = require('./connection');
+const PeopleRoutes = require('./routes/people');
 
-app.get('/', (req, res)=> {
-    res.send('Hello Express!');
-});
+var app = express();
+app.use(bodyParser.json());
 
-app.listen(8080);
+app.use('/people', PeopleRoutes);
 
+
+app.listen(3000);
